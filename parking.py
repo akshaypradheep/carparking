@@ -1,26 +1,32 @@
 #!/usr/bin/python3
 import pyrebase
-busRoute = "chkra-thrissur"
 #Firebase Configuration
+
+#config = {
+#  #"apiKey": "vfUtznfQTNsjBnwNw5VTrNEldJVydp5CgNMfTjk5",
+#  "apiKey":"AIzaSyBeTkzdsVpcKpZkU9BMzNwCloUlNf2MWAo",
+#  "authDomain": "akshaypradheepdc.firebaseapp.com",
+#  "databaseURL": "https://akshaypradheepdc.firebaseio.com",
+#  "storageBucket": "akshaypradheepdc.appspot.com"
+#}
 config = {
-  #"apiKey": "vfUtznfQTNsjBnwNw5VTrNEldJVydp5CgNMfTjk5",
   "apiKey":"AIzaSyBeTkzdsVpcKpZkU9BMzNwCloUlNf2MWAo",
-  "authDomain": "akshaypradheepdc.firebaseapp.com",
-  "databaseURL": "https://akshaypradheepdc.firebaseio.com",
-  "storageBucket": "akshaypradheepdc.appspot.com"
+  "authDomain": "eventmanager-54b85.firebaseapp.com",
+  "databaseURL": "https://eventmanager-54b85.firebaseio.com",
+  "storageBucket": "eventmanager-54b85.appspot.com"
 }
+#https://eventmanager-54b85.firebaseio.com/
+
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
-a = db.child("passCodes").get()
+a = db.child("eventgust").get()
+pas = list()
 newdict = a.val()
-newlist = list()
-for key in newdict.keys():
-  print(key)
-  newlist.append(key)
-_pass = list()
-for i in newlist:
-	print (newdict[i])
-
-	
+for key in newdict.values():
+#	print(key)
+	pas.append(key)
+for i in pas:
+	_usr = str(i)
+	db.child(_usr).set("1")
